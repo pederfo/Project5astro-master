@@ -1,0 +1,30 @@
+Set number of objects
+Set final time of simulation
+set time step
+Set size of sphere we want objects inside
+Initialize positions of objects inside sphere
+Initialize velocities of objects
+
+start time loop
+	update positions and velocities with method
+	print positions (and velocities?) to file
+end time loop
+
+use python file to make 3D video of simulation
+
+
+TWO BODY PROBLEM
+1. Use Rk4 and Velocity-Verlet on 2 body problem. use whatever masses and dimensions you want.
+2. Compare stability of methods.
+3. How do they work for very long times?
+4. Compare time used to advance one time step.
+5. Comment results
+6. Decide which methods you would use for systems requiring long times.
+
+OPEN CLUSTER
+1. Extend code to arbitrary number of objects, N
+2. Start with unifrom distribution inside sphere R_0
+3. Start all at rest (v=0)
+4. Use masses with gaussian distribution around ten solar masses with standard deviation of 1 solar mass.
+5. use solar masses and light years as units for mass in length, and make equations dimensionless
+

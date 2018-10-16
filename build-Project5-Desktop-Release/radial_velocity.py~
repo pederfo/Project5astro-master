@@ -1,0 +1,43 @@
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
+from matplotlib import rc 
+rc('font',**{'family':'serif'}) # This is for Latex writing
+
+data = np.loadtxt("outputverlet.dat",unpack=True);
+xdata = data[0]
+ydata = data[1]
+zdata = data[2]
+
+
+#Insert number of planets in data
+n_planets = 200
+t_final = 10
+#Insert number of timesteps to create data
+timesteps = int(len(xdata)/n_planets)
+
+
+#Empty arrays for positions
+x = np.zeros((n_planets,timesteps))
+y = np.zeros((n_planets,timesteps))
+z = np.zeros((n_planets,timesteps))
+
+#Positions of objects arranged in right order
+for t in range(0,timesteps):
+	for i in range(0,n_planets):	
+		x[i,t] = xdata[i +t*n_planets]
+		y[i,t] = ydata[i +t*n_planets]
+		z[i,t] = zdata[i +t*n_planets]
+
+#Calculate radial distance for all objects
+r = np.zeros(n_planets)
+for i in range(n_planets):
+	r[i] = np.sqrt(x[i,-1]*x[i,-1] + y[i,-1]*y[i,-1] + z[i,-1]*z[i,-1])
+
+#Plot number density of objects per distance
+plt.figure()
+plt.hist(r,bins=np.arange(0,np.max(r)+1,1))
+plt.ylabel('Number of objects between distances')
+plt.xlabel('Radial distance [ly]')
+plt.show()
+
